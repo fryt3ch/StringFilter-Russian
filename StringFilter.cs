@@ -122,8 +122,12 @@ namespace ConsoleApp1
 
             if (removeExtraSymbols)
                 for (int i = 0; i < str.Length - 1; i++)
-                    if (i + 3 < str.Length && str[i] == str[i + 1] && str[i] == str[i + 2] && str[i] == str[i + 3])
+                {
+                    var lChar = char.ToLower(str[i]);
+
+                    if (i + 3 < str.Length && lChar == char.ToLower(str[i + 1]) && lChar == char.ToLower(str[i + 2]) && lChar == char.ToLower(str[i + 3]))
                         str = str.Remove(i--, 1);
+                }
 
             return str;
         }
@@ -138,7 +142,7 @@ namespace ConsoleApp1
                 if (char.IsUpper(str[i]))
                     upperChars[k] = true;
 
-                if (char.IsWhiteSpace(str[i]) || char.IsPunctuation(str[i]) || (i + 1 < str.Length && str[i] == str[i + 1]))
+                if (char.IsWhiteSpace(str[i]) || char.IsPunctuation(str[i]) || (i + 1 < str.Length && char.ToLower(str[i]) == char.ToLower(str[i + 1])))
                 {
                     removedChars[k] = str[i];
 
